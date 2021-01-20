@@ -28,7 +28,24 @@ def digits_to_words(input_string):
             >>> tp2.digits_to_words(digits_str2)
             'three one four one five'
     """
-    digit_string = None
+    numbers = []
+    splited_list = input_string.split()
+    # print(splited_list)
+    for splited in splited_list :
+        for strings in splited :
+            if strings.isdigit() == True :
+                numbers.append(strings)
+    # print(numbers)
+    digit_string = ""
+    str_num = ['0','1','2','3','4','5','6','7','8','9']
+    eng_num = ['zero','one','two','three','four','five','six','seven','eight','nine']
+    for number in numbers :
+        for i in range(10) :
+            if number == str_num[i] :
+                if digit_string == "" :
+                    digit_string += eng_num[i]
+                else :
+                    digit_string += " "+eng_num[i]
     return digit_string
 
 
@@ -64,5 +81,31 @@ def to_camel_case(underscore_str):
             >>> tp2.to_camel_case(underscore_str3)
             "alreadyCamel"
     """
-    camelcase_str = None
+    splited_by_underscore = underscore_str.split("_")
+    not_camel_list = []
+    # print(splited_by_underscore)
+    for strings in splited_by_underscore :
+        if strings != "_" and strings != '':
+            not_camel_list.append(strings)
+    # print(not_camel_list)
+
+    camelcase_str = ""
+
+    for i,x in enumerate(not_camel_list) :
+        if len(not_camel_list) == 1 :
+            return not_camel_list[0]
+
+        if i == 0 :
+            for alphabets in x :
+                camelcase_str += alphabets.lower()
+        else :
+            for j,alphabets in enumerate(x) :
+                if j == 0 :
+                    camelcase_str += alphabets.upper()
+                else :
+                    camelcase_str += alphabets.lower()
+    
+    # if camelcase_str[0].isupper() == True :
+        # camelcase_str[0] = camelcase_str.lower()
+
     return camelcase_str
